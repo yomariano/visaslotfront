@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  # Appointment Monitor Service
+  appointment-monitor:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - webhook-receiver
+    networks:
+      - app-network
+    volumes:
+      - monitor-logs:/app/logs
+
+  # Webhook Receiver Service
+  webhook-receiver:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.webhook
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+    volumes:
+      - webhook-data:/app/data
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  monitor-logs:
+  webhook-data: 
