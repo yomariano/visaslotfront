@@ -52,9 +52,10 @@ const PricingPlan: React.FC<PricingPlanProps> = ({
             ? 'bg-blue-600 hover:bg-blue-700 text-white'
             : 'bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-50'
         } px-6 py-3 rounded-xl transition-colors flex items-center justify-center font-medium text-lg`}
+        aria-label={`Subscribe to ${name}`}
       >
         <span>Subscribe Now</span>
-        <ArrowRight className="ml-2 h-5 w-5" />
+        <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
       </button>
     </div>
   </div>
@@ -73,14 +74,14 @@ const Hero: React.FC = () => {
 
   return (
     <>
-      <section className="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-br from-blue-50 to-cyan-50">
+      <section className="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-br from-blue-50 to-cyan-50" aria-labelledby="main-heading">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 mb-6">
-              Find Your <span className="bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">Visa Appointment</span> With Ease
+            <h1 id="main-heading" className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 mb-6">
+              Find Your <span className="bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">Schengen Visa Appointment</span> With Ease
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Never miss a visa appointment slot again. We'll find and notify you when the perfect appointment becomes available.
+              Never miss a Schengen visa appointment slot again. We'll monitor embassy calendars across Europe and notify you instantly when appointments become available.
             </p>
           </div>
 
@@ -88,18 +89,18 @@ const Hero: React.FC = () => {
             <div className="w-full lg:w-2/3">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <PricingPlan
-                  name="Weekly Plan"
+                  name="Weekly Monitoring"
                   price={1.99}
                   interval="week"
-                  description="Weekly subscription at €1.99"
+                  description="Weekly subscription for Schengen visa appointment alerts in your preferred consulate"
                   onClick={handlePlanClick}
                 />
                 
                 <PricingPlan
-                  name="Monthly Plan"
+                  name="Monthly Monitoring"
                   price={5.99}
                   interval="month"
-                  description="Monthly subscription at €5.99"
+                  description="Full month of Schengen visa slot monitoring with priority notifications"
                   isPopular={true}
                   onClick={handlePlanClick}
                 />
@@ -111,36 +112,59 @@ const Hero: React.FC = () => {
                 </p>
               </div>
 
-              <div className="mt-12 flex items-center justify-center space-x-8 text-sm text-gray-500">
-                <span className="flex items-center">
-                  <span className="w-2 h-2 rounded-full bg-green-500 mr-2"></span>
-                  25k+ appointments found
-                </span>
-                <span className="flex items-center">
-                  <span className="w-2 h-2 rounded-full bg-blue-500 mr-2"></span>
-                  100+ countries supported
-                </span>
+              <div className="mt-12 bg-white p-6 rounded-xl border border-gray-100">
+                <h2 className="text-xl font-semibold text-gray-800 mb-4">Why Choose VisaSlot for Schengen Appointments</h2>
+                <ul className="space-y-3">
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 rounded-full bg-green-500 mr-2" aria-hidden="true"></span>
+                    <span>Real-time monitoring of all Schengen country consulates</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 rounded-full bg-blue-500 mr-2" aria-hidden="true"></span>
+                    <span>Instant SMS & email notifications when slots open</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 rounded-full bg-purple-500 mr-2" aria-hidden="true"></span>
+                    <span>Coverage for all 26 Schengen countries</span>
+                  </li>
+                </ul>
               </div>
             </div>
 
             <div className="w-full lg:w-1/3">
               <div className="relative">
-                <div className="absolute -top-6 -left-6 w-24 h-24 bg-yellow-300 rounded-full opacity-50 animate-pulse"></div>
-                <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-blue-300 rounded-full opacity-50 animate-pulse" style={{ animationDelay: '1s' }}></div>
+                <div className="absolute -top-6 -left-6 w-24 h-24 bg-yellow-300 rounded-full opacity-50 animate-pulse" aria-hidden="true"></div>
+                <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-blue-300 rounded-full opacity-50 animate-pulse" style={{ animationDelay: '1s' }} aria-hidden="true"></div>
                 
-                <div className="relative bg-white p-4 rounded-2xl shadow-lg">
+                <figure className="relative bg-white p-4 rounded-2xl shadow-lg">
                   <img 
                     src="https://images.pexels.com/photos/3769138/pexels-photo-3769138.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
-                    alt="Person looking at passport and calendar"
+                    alt="Person checking Schengen visa appointment calendar"
                     className="rounded-xl w-full h-auto"
+                    width="500"
+                    height="375"
+                    loading="eager"
                   />
+                  <figcaption className="sr-only">Visual representation of checking Schengen visa appointments</figcaption>
                   
                   <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-white py-3 px-5 rounded-full shadow-lg flex items-center">
                     <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium mr-2">New</span>
-                    <span className="text-gray-700">Same-day notifications!</span>
+                    <span className="text-gray-700">Same-day Schengen slot alerts!</span>
                   </div>
-                </div>
+                </figure>
               </div>
+            </div>
+          </div>
+
+          <div className="mt-16 text-center max-w-3xl mx-auto">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Supported Schengen Countries</h2>
+            <p className="mb-6 text-gray-600">Our service monitors visa appointment availability for all 26 Schengen countries:</p>
+            <div className="flex flex-wrap justify-center gap-3">
+              {['Austria', 'Belgium', 'Czech Republic', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Italy', 'Latvia', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Malta', 'Netherlands', 'Norway', 'Poland', 'Portugal', 'Slovakia', 'Slovenia', 'Spain', 'Sweden', 'Switzerland'].map((country) => (
+                <span key={country} className="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">
+                  {country}
+                </span>
+              ))}
             </div>
           </div>
 

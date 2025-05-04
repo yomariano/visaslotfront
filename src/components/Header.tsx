@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Calendar, Bell, Globe } from 'lucide-react';
+import { Menu, X, Calendar } from 'lucide-react';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,18 +25,19 @@ const Header: React.FC = () => {
           ? 'bg-white shadow-md py-3'
           : 'bg-transparent py-5'
       }`}
+      role="banner"
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <Calendar className="h-8 w-8 text-blue-500 mr-2" />
+          <a href="/" className="flex items-center" aria-label="VisaSlot Home">
+            <Calendar className="h-8 w-8 text-blue-500 mr-2" aria-hidden="true" />
             <span className="text-xl font-bold bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
               VisaSlot
             </span>
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-8" aria-label="Main Navigation">
             <a href="#how-it-works" className="text-gray-700 hover:text-blue-500 transition-colors">
               How It Works
             </a>
@@ -46,10 +47,29 @@ const Header: React.FC = () => {
             <a href="#testimonials" className="text-gray-700 hover:text-blue-500 transition-colors">
               Testimonials
             </a>
-            <a href="#pricing" className="text-gray-700 hover:text-blue-500 transition-colors">
-              Pricing
+            <a href="#supported-countries" className="text-gray-700 hover:text-blue-500 transition-colors">
+              Schengen Countries
             </a>
-            <button className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-full transition-colors flex items-center">
+            <div className="relative group">
+              <button className="text-gray-700 hover:text-blue-500 transition-colors flex items-center" aria-expanded="false" aria-haspopup="true">
+                <span>Resources</span>
+                <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 p-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200">
+                <a href="/blog/schengen-visa-guide" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md">
+                  Schengen Visa Guide
+                </a>
+                <a href="/faq" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md">
+                  FAQs
+                </a>
+                <a href="/appointment-tips" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md">
+                  Appointment Tips
+                </a>
+              </div>
+            </div>
+            <button className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-full transition-colors flex items-center" aria-label="Get Started with VisaSlot">
               <span>Get Started</span>
             </button>
           </nav>
@@ -58,11 +78,14 @@ const Header: React.FC = () => {
           <button 
             className="md:hidden text-gray-500 hover:text-gray-700 focus:outline-none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
             {isMenuOpen ? (
-              <X className="h-6 w-6" />
+              <X className="h-6 w-6" aria-hidden="true" />
             ) : (
-              <Menu className="h-6 w-6" />
+              <Menu className="h-6 w-6" aria-hidden="true" />
             )}
           </button>
         </div>
@@ -70,7 +93,7 @@ const Header: React.FC = () => {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white shadow-lg animate-fadeIn">
+        <div id="mobile-menu" className="md:hidden bg-white shadow-lg animate-fadeIn" role="navigation" aria-label="Mobile Navigation">
           <div className="container mx-auto px-4 py-4">
             <nav className="flex flex-col space-y-4">
               <a 
@@ -95,15 +118,42 @@ const Header: React.FC = () => {
                 Testimonials
               </a>
               <a 
-                href="#pricing" 
+                href="#supported-countries" 
                 className="text-gray-700 hover:text-blue-500 transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Pricing
+                Schengen Countries
               </a>
+
+              <div className="py-2 border-t border-gray-100">
+                <p className="text-sm font-medium text-gray-400 mb-2">Resources</p>
+                <a 
+                  href="/blog/schengen-visa-guide" 
+                  className="block pl-2 py-1 text-gray-700 hover:text-blue-500"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Schengen Visa Guide
+                </a>
+                <a 
+                  href="/faq" 
+                  className="block pl-2 py-1 text-gray-700 hover:text-blue-500"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  FAQs
+                </a>
+                <a 
+                  href="/appointment-tips" 
+                  className="block pl-2 py-1 text-gray-700 hover:text-blue-500"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Appointment Tips
+                </a>
+              </div>
+              
               <button 
-                className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-full transition-colors w-full flex items-center justify-center"
+                className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-full transition-colors w-full flex items-center justify-center mt-2"
                 onClick={() => setIsMenuOpen(false)}
+                aria-label="Get Started with VisaSlot"
               >
                 <span>Get Started</span>
               </button>

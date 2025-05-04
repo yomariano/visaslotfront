@@ -12,11 +12,15 @@ function HomePage() {
   return (
     <>
       <Header />
-      <Hero />
-      <HowItWorks />
-      <Features />
-      <Testimonials />
-      <CallToAction />
+      <main>
+        <Hero />
+        <HowItWorks />
+        <Features />
+        <div id="supported-countries">
+          <Testimonials />
+        </div>
+        <CallToAction />
+      </main>
       <Footer />
     </>
   );
