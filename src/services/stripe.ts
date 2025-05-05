@@ -10,6 +10,11 @@ export type SubscriptionPlan = {
   priceId: string; // Stripe Price ID
 };
 
+// Ensure environment variables are available
+if (!process.env.NEXT_PUBLIC_STRIPE_WEEKLY_PRICE_ID || !process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID) {
+  throw new Error('Missing required Stripe price IDs in environment variables');
+}
+
 export const SUBSCRIPTION_PLANS: Record<string, SubscriptionPlan> = {
   weekly: {
     id: 'weekly_plan',
@@ -18,7 +23,7 @@ export const SUBSCRIPTION_PLANS: Record<string, SubscriptionPlan> = {
     currency: 'EUR',
     interval: 'week',
     description: 'Weekly subscription at €1.99',
-    priceId: 'price_1RL586Cnj3EJxpv0abWePwnC' // Replace with your actual Stripe Price ID
+    priceId: process.env.NEXT_PUBLIC_STRIPE_WEEKLY_PRICE_ID
   },
   monthly: {
     id: 'monthly_plan',
@@ -27,7 +32,7 @@ export const SUBSCRIPTION_PLANS: Record<string, SubscriptionPlan> = {
     currency: 'EUR',
     interval: 'month',
     description: 'Monthly subscription at €5.99',
-    priceId: 'price_1RL58OCnj3EJxpv0MkdCb9tl' // Replace with your actual Stripe Price ID
+    priceId: process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID
   }
 };
 
