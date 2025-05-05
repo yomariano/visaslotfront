@@ -11,7 +11,7 @@ export type SubscriptionPlan = {
 };
 
 // Ensure environment variables are available
-if (!process.env.NEXT_PUBLIC_STRIPE_WEEKLY_PRICE_ID || !process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID) {
+if (!import.meta.env.VITE_STRIPE_WEEKLY_PRICE_ID || !import.meta.env.VITE_STRIPE_MONTHLY_PRICE_ID) {
   throw new Error('Missing required Stripe price IDs in environment variables');
 }
 
@@ -23,7 +23,7 @@ export const SUBSCRIPTION_PLANS: Record<string, SubscriptionPlan> = {
     currency: 'EUR',
     interval: 'week',
     description: 'Weekly subscription at €1.99',
-    priceId: process.env.NEXT_PUBLIC_STRIPE_WEEKLY_PRICE_ID
+    priceId: import.meta.env.VITE_STRIPE_WEEKLY_PRICE_ID
   },
   monthly: {
     id: 'monthly_plan',
@@ -32,7 +32,7 @@ export const SUBSCRIPTION_PLANS: Record<string, SubscriptionPlan> = {
     currency: 'EUR',
     interval: 'month',
     description: 'Monthly subscription at €5.99',
-    priceId: process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID
+    priceId: import.meta.env.VITE_STRIPE_MONTHLY_PRICE_ID
   }
 };
 
