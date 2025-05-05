@@ -1,11 +1,11 @@
 "use client";
 
 import React from 'react';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 import { XCircle } from 'lucide-react';
 
 export default function PaymentCancelPage() {
-  const router = useRouter();
+  const navigate = useNavigate();
   
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
@@ -17,7 +17,7 @@ export default function PaymentCancelPage() {
             Your payment has been cancelled. No charges have been made.
           </p>
           <button 
-            onClick={() => router.push('/')}
+            onClick={() => navigate('/')}
             className="mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             Return Home

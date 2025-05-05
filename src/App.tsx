@@ -7,6 +7,7 @@ import Testimonials from './components/Testimonials';
 import CallToAction from './components/CallToAction';
 import Footer from './components/Footer';
 import PaymentSuccessPage from './app/payment-success/page';
+import PaymentCancelPage from './app/payment-cancel/page';
 
 function HomePage() {
   return (
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "/payment-success",
     element: <PaymentSuccessPage />,
+  },
+  {
+    path: "/payment-cancel",
+    element: <PaymentCancelPage />,
   },
 ]);
 
