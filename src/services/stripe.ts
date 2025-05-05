@@ -47,7 +47,7 @@ const getAppBaseUrl = (): string => {
   // Ensure we get the full origin including protocol
   const baseUrl = typeof window !== 'undefined' 
     ? window.location.origin 
-    : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:5173';
+    : import.meta.env.VITE_APP_URL || 'http://localhost:5173';
   console.log('Base URL for redirects:', baseUrl);
   return baseUrl;
 };
