@@ -27,11 +27,11 @@ export default function DebugPage() {
       logMessage('Testing API connection...');
       setApiStatus('loading');
       
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000/api'}/users/test`);
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api'}/users/test`);
       const data = await response.json();
       
       logMessage(`API Response: ${JSON.stringify(data, null, 2)}`);
-      setApiUrl(`${import.meta.env.VITE_API_URL || 'http://localhost:8000/api'}`);
+      setApiUrl(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api'}`);
       setApiStatus('success');
     } catch (error) {
       logMessage(`API Error: ${error instanceof Error ? error.message : String(error)}`);
